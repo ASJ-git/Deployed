@@ -78,7 +78,7 @@ const websites = [
     title: 'Web Prence',
     description:
       'A modern website showcasing a presence app that helps users track availability and activity in real time. Designed with a clean interface for seamless navigation and instant insights.',
-    websiteLink: 'http://asjresume.netlify.app',
+    websiteLink: 'http://webprence.netlify.app',
   },
   {
     src: '/agency.png',
@@ -101,12 +101,20 @@ const websites = [
       'A responsive headphone website built with vanilla JavaScript, HTML, and CSS.',
     websiteLink: 'http://phonoweb.netlify.app',
   },
+
   {
     src: '/guessgame.png',
     title: 'Guess Game',
     description:
       'A simple game where the computer secretly chooses a number within a given range, and player tries to guess it.',
     websiteLink: 'http://guessnogame01.netlify.app',
+  },
+  {
+    src: '/speakIt.png',
+    title: 'SpeakIt',
+    description:
+      'A browser-based Text-to-Speech app called SpeakIt. Type anything → hear it spoken instantly. ',
+    websiteLink: 'https://asjspeakit.netlify.app',
   },
 ];
 export default websites;

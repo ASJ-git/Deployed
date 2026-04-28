@@ -2,7 +2,7 @@ import WebsiteCard from './WebsiteCard';
 import websites from '../Utitlities/Websites.js';
 const Showcase = () => {
   return (
-    <div className="grid container mx-auto py-20">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-[90%] max-w-[1366px] mx-auto py-20">
       {websites.map((website) => (
         <WebsiteCard
           key={crypto.randomUUID()}

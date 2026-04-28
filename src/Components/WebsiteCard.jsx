@@ -1,7 +1,7 @@
 import Button from './Button';
 const WebsiteCard = ({ src, title, description, websiteLink }) => {
   return (
-    <div className="w-80 rounded-b-xl border-1 border-gray-400">
+    <div className="w-full rounded-b-xl border-1 border-gray-400">
       <div className="h-80 overflow-hidden">
         <img
           src={src}

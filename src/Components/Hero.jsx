@@ -12,8 +12,7 @@ const Hero = () => {
           successfully, and maintained with care. My work reflects a dedication
           to quality and a passion for creating impactful solutions.
         </p>
-        <Button text="Read More" />
-      </main>
+       </main>
     </section>
   );
 };
