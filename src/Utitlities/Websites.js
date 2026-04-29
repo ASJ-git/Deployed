@@ -116,5 +116,12 @@ const websites = [
       'A browser-based Text-to-Speech app called SpeakIt. Type anything → hear it spoken instantly. ',
     websiteLink: 'https://asjspeakit.netlify.app',
   },
+  {
+    src: '/mindMatters.png',
+    title: 'Mind matters',
+    description:
+      ' A student-led Mental Health Awareness Initiative, conceptualizedand driven by Mastercard Foundation Scholars at KNUST.',
+    websiteLink: 'https://ilfmindmatters.netlify.app',
+  },
 ];
 export default websites;
