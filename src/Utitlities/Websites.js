@@ -42,8 +42,8 @@ const websites = [
     websiteLink: 'http://asjcyberdev.netlify.app',
   },
   {
-    src: '/webprence.png',
-    title: 'Web Prence',
+    src: '/webpresence.png',
+    title: 'Web Presence',
     description:
       'A modern website showcasing a presence app that helps users track availability and activity in real time. Designed with a clean interface for seamless navigation and instant insights.',
     websiteLink: 'http://webprence.netlify.app',
@@ -94,6 +94,13 @@ const websites = [
     description:
       'A responsive restaurant website with a modern UI — built to showcase front-end design skills in a real-world food business context.',
     websiteLink: 'http://marysburger.netlify.app',
+  },
+  {
+    src: '/vanillacoffee.png',
+    title: "Uncle's Coffee",
+    description:
+      'A responsive artisan coffee shop website showcasing signature blends, product pricing, and a clean modern layout.',
+    websiteLink: 'http://vanillacoffee.netlify.app',
   },
   {
     src: '/guessgame.png',
