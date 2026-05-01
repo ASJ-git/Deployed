@@ -5,12 +5,16 @@ import Showcase from '../Components/Showcase';
 
 const Home = () => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       <Hero />
-      <Showcase />
+
+      <main className="flex-grow">
+        <Showcase />
+      </main>
+
       <Footer />
-    </>
+    </div>
   );
 };
 
