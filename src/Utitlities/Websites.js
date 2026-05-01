@@ -7,11 +7,46 @@ const websites = [
     websiteLink: 'http://asjmovieapp.netlify.app',
   },
   {
+    src: '/weatherweb.png',
+    title: 'Weather App',
+    description:
+      'A sleek weather app that delivers real-time forecasts with clear visuals and accurate data. Stay updated on temperature, conditions, and alerts wherever you are.',
+    websiteLink: 'http://asj-weather-web.netlify.app',
+  },
+  {
+    src: '/speakIt.png',
+    title: 'SpeakIt',
+    description:
+      'A browser-based Text-to-Speech app called SpeakIt. Type anything → hear it spoken instantly. ',
+    websiteLink: 'https://asjspeakit.netlify.app',
+  },
+  {
+    src: '/mindMatters.png',
+    title: 'Mind matters',
+    description:
+      ' A student-led Mental Health Awareness Initiative, conceptualized and driven by Mastercard Foundation Scholars at KNUST.',
+    websiteLink: 'https://ilfmindmatters.netlify.app',
+  },
+  {
     src: '/renanceproject.png',
     title: 'Renance Project',
-    description:
-      'A trusted co-pilot for every stage of your employees’ financial journey, offering clear insights and guidance to strengthen their overall financial well-being.',
+    description: `      A trusted co-pilot for every stage of your employees' financial journey, offering clear insights and guidance to strengthen their overall financial well-being.
+`,
     websiteLink: 'http://renanceproject.netlify.app',
+  },
+  {
+    src: '/cyberdev.png',
+    title: 'Cyber Dev',
+    description:
+      'A craft digital experiences that blend creativity with technology, specializing in modern web development and cybersecurity systems.',
+    websiteLink: 'http://asjcyberdev.netlify.app',
+  },
+  {
+    src: '/webprence.png',
+    title: 'Web Prence',
+    description:
+      'A modern website showcasing a presence app that helps users track availability and activity in real time. Designed with a clean interface for seamless navigation and instant insights.',
+    websiteLink: 'http://webprence.netlify.app',
   },
   {
     src: '/alpha.png',
@@ -20,23 +55,10 @@ const websites = [
     websiteLink: 'http://saas-alpha.netlify.app',
   },
   {
-    src: '/apptheme.png',
-    title: 'App Theme',
-    description: 'A theme built with HTML 5, CSS 3 & FLEXBOX',
-    websiteLink: 'http://newapptheme.netlify.app',
-  },
-  {
     src: '/beta.png',
     title: 'Saas Beta',
     description: 'SaaS Landing Page Template',
     websiteLink: 'http://saas-beta.netlify.app',
-  },
-  {
-    src: '/cyberdev.png',
-    title: 'Cyber Dev',
-    description:
-      'A craft digital experiences that blend creativity with technology, specializing in modern web development and cybersecurity systems.',
-    websiteLink: 'http://asjcyberdev.netlify.app',
   },
   {
     src: '/Digital Porfolio.png',
@@ -53,18 +75,11 @@ const websites = [
     websiteLink: 'http://ehya-expliot-site.netlify.app',
   },
   {
-    src: '/marysburger.png',
-    title: 'Marys Burger',
+    src: '/agency.png',
+    title: 'Creative Agency',
     description:
-      'Marys Burger We serve the juiciest burgers in the continent since 2015',
-    websiteLink: 'http://marysburger.netlify.app',
-  },
-  {
-    src: '/weatherweb.png',
-    title: 'Weather App',
-    description:
-      'A sleek weather app that delivers real-time forecasts with clear visuals and accurate data. Stay updated on temperature, conditions, and alerts wherever you are.',
-    websiteLink: 'http://asj-weather-web.netlify.app',
+      'A stylish website displaying a collection of headphones with crisp images and details. Designed to showcase products visually, making it easy for users to explore and compare.',
+    websiteLink: 'http://agencyweb101.netlify.app',
   },
   {
     src: '/trailhike.png',
@@ -74,34 +89,12 @@ const websites = [
     websiteLink: 'http://nature-company-trailhive.netlify.app',
   },
   {
-    src: '/webprence.png',
-    title: 'Web Prence',
+    src: '/marysburger.png',
+    title: 'Marys Burger',
     description:
-      'A modern website showcasing a presence app that helps users track availability and activity in real time. Designed with a clean interface for seamless navigation and instant insights.',
-    websiteLink: 'http://webprence.netlify.app',
+      'Marys Burger We serve the juiciest burgers in the continent since 2015',
+    websiteLink: 'http://marysburger.netlify.app',
   },
-  {
-    src: '/agency.png',
-    title: 'Creative Agency',
-    description:
-      'A stylish website displaying a collection of headphones with crisp images and details. Designed to showcase products visually, making it easy for users to explore and compare.',
-    websiteLink: 'http://agencyweb101.netlify.app',
-  },
-  {
-    src: '/googleclone.png',
-    title: 'Google Clone',
-    description:
-      'A clean, minimal search interface replicating Google’s homepage with a centered logo, input bar, and quick-access buttons.',
-    websiteLink: 'http://mygoogleweb.netlify.app',
-  },
-  {
-    src: '/phonoweb.png',
-    title: 'Phono Web',
-    description:
-      'A responsive headphone website built with vanilla JavaScript, HTML, and CSS.',
-    websiteLink: 'http://phonoweb.netlify.app',
-  },
-
   {
     src: '/guessgame.png',
     title: 'Guess Game',
@@ -110,18 +103,24 @@ const websites = [
     websiteLink: 'http://guessnogame01.netlify.app',
   },
   {
-    src: '/speakIt.png',
-    title: 'SpeakIt',
+    src: '/phonoweb.png',
+    title: 'Phono Web',
     description:
-      'A browser-based Text-to-Speech app called SpeakIt. Type anything → hear it spoken instantly. ',
-    websiteLink: 'https://asjspeakit.netlify.app',
+      'A responsive headphone website built with vanilla JavaScript, HTML, and CSS.',
+    websiteLink: 'http://phonoweb.netlify.app',
   },
   {
-    src: '/mindMatters.png',
-    title: 'Mind matters',
-    description:
-      ' A student-led Mental Health Awareness Initiative, conceptualizedand driven by Mastercard Foundation Scholars at KNUST.',
-    websiteLink: 'https://ilfmindmatters.netlify.app',
+    src: '/apptheme.png',
+    title: 'App Theme',
+    description: 'A theme built with HTML 5, CSS 3 & FLEXBOX',
+    websiteLink: 'http://newapptheme.netlify.app',
+  },
+  {
+    src: '/googleclone.png',
+    title: 'Google Clone',
+    description: `      A clean, minimal search interface replicating Google's homepage with a centered logo, input bar, and quick-access buttons.
+`,
+    websiteLink: 'http://mygoogleweb.netlify.app',
   },
 ];
 export default websites;
