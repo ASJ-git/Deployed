@@ -15,16 +15,3 @@ body {
     transition: opacity ease 0.5s;
   }
 }
-/* .grid {
-  display: grid;
-  gap: 2em;
-  justify-content: center;
-  align-items: center;
-} */
-/* .grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: center;
-  align-items: center;
-} */
