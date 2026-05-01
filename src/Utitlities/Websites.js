@@ -92,7 +92,7 @@ const websites = [
     src: '/marysburger.png',
     title: 'Marys Burger',
     description:
-      'Marys Burger We serve the juiciest burgers in the continent since 2015',
+      'A responsive restaurant website with a modern UI — built to showcase front-end design skills in a real-world food business context.',
     websiteLink: 'http://marysburger.netlify.app',
   },
   {
