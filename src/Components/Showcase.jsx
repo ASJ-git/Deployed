@@ -22,7 +22,7 @@ const Showcase = () => {
           websiteLink={website.websiteLink}
         />
       ))}
-      <div className="flex flex-wrap justify-center">
+      <div className="lg:col-span-3 md:col-span-2 col-span-1 flex flex-wrap justify-center gap-2">
         <Pagination
           totalPosts={websites.length}
           postsPerPage={postsPerPage}
