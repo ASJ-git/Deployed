@@ -9,7 +9,7 @@ const Showcase = () => {
   const firstPage = lastPage - postsPerPage;
   const currentPost = websites.slice(firstPage, lastPage);
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-[90%] max-w-[1366px] mx-auto pb-10 pt-20">
+    <div id='showcase' className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-[90%] max-w-[1366px] mx-auto pb-10 pt-20">
       {currentPost.map((website) => (
         <WebsiteCard
           key={crypto.randomUUID()}
