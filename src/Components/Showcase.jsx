@@ -10,7 +10,7 @@ const Showcase = () => {
   const currentPost = websites.slice(firstPage, lastPage);
   return (
     <div className="flex flex-col">
-      // Grid
+      {/*  Grid */}
       <div
         id="showcase"
         className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-[90%] max-w-[1366px] mx-auto pb-10 pt-20"
@@ -25,7 +25,7 @@ const Showcase = () => {
           />
         ))}
       </div>
-      // Pagination outside grid, pushed to bottom
+       {/* Pagination outside grid, pushed to bottom */}
       <div className="mt-auto py-6 flex justify-center">
         <Pagination
           totalPosts={websites.length}
