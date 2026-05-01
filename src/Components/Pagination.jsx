@@ -21,7 +21,7 @@ const Pagination = ({
                 .getElementById('showcase')
                 .scrollIntoView({ behavior: 'smooth' });
             }}
-            className={`px-1.5 cursor-pointer mx-2 text-white text-2xl ${
+            className={`px-1.5 cursor-pointer m-2 text-white text-2xl ${
               page === currentPage ? 'bg-blue-500 font-bold' : 'bg-blue-900'
             }`}
           >
