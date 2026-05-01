@@ -9,20 +9,24 @@ const Showcase = () => {
   const firstPage = lastPage - postsPerPage;
   const currentPost = websites.slice(firstPage, lastPage);
   return (
-    <div
-      id="showcase"
-      className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-[90%] max-w-[1366px] mx-auto pb-10 pt-20"
-    >
-      {currentPost.map((website) => (
-        <WebsiteCard
-          key={crypto.randomUUID()}
-          src={website.src}
-          title={website.title}
-          description={website.description}
-          websiteLink={website.websiteLink}
-        />
-      ))}
-      <div className="lg:col-span-3 md:col-span-2 col-span-1 flex flex-wrap justify-center gap-2">
+    <div className="flex flex-col">
+      // Grid
+      <div
+        id="showcase"
+        className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 w-[90%] max-w-[1366px] mx-auto pb-10 pt-20"
+      >
+        {currentPost.map((website) => (
+          <WebsiteCard
+            key={crypto.randomUUID()}
+            src={website.src}
+            title={website.title}
+            description={website.description}
+            websiteLink={website.websiteLink}
+          />
+        ))}
+      </div>
+      // Pagination outside grid, pushed to bottom
+      <div className="mt-auto py-6 flex justify-center">
         <Pagination
           totalPosts={websites.length}
           postsPerPage={postsPerPage}
@@ -30,6 +34,7 @@ const Showcase = () => {
           currentPage={currentPage}
         />
       </div>
+     
     </div>
   );
 };
