@@ -147,6 +147,21 @@ Documentation of issues found during a project review and the fixes applied. Ver
 
 ---
 
+## 14. Hero section redesign
+
+**Files:** `src/Components/Hero.jsx`, `src/App.css`, `public/circuit-pattern.svg` (new)
+
+**Change (requested, from a design mockup):** Replaced the flat `bg-blue-400` hero with a navy gradient background, a subtle repeating circuit-trace texture, thin gold top/bottom borders, and split the sub-headline into two serif lines separated by a short teal-to-gold gradient divider.
+
+**Fix:**
+- Added `public/circuit-pattern.svg`, a small tileable circuit-trace graphic (thin light-blue lines + node dots at low opacity).
+- Added `.hero-bg` to `App.css`: layers the SVG tile (repeating, 240×240) under a radial glow and a navy linear gradient (`#1e3a8a` → `#172554`), and `.hero-divider`, a 1px gradient bar (`#2dd4bf` → `#d97706`). Implemented as plain CSS rather than Tailwind's gradient utilities, since those utility names changed between Tailwind v3 and v4 (this project is on v4) — writing the gradients directly avoids silently shipping a no-op class.
+- `Hero.jsx` now uses `hero-bg` plus `border-y border-amber-700/50` for the gold edges, and renders the sub-copy as two `font-serif` paragraphs (Tailwind's system serif stack — no new font dependency) with a `hero-divider` bar between them.
+
+**Not done:** the mockup's logo (a distinct metallic circular "ASJ" badge) differs from the current `public/nav-brand.jpg`. That's a specific image asset this session doesn't have access to generate — left the navbar logo unchanged; flagged to the user.
+
+---
+
 ## Verification
 
 - `npm run lint` — passes.
@@ -158,6 +173,51 @@ Documentation of issues found during a project review and the fixes applied. Ver
 - Logo click and preview scrollbar behavior both driven end-to-end with Playwright: confirmed pagination actually resets and the page scrolls to top on logo click, and confirmed the preview dialog remains scrollable (`scrollTop` moves) with the scrollbar hidden.
 - Close button restyle: screenshotted, confirmed it visually floats outside the card's top-right corner with the white ring visible, and confirmed clicking it still closes the modal.
 - Caught the `h-full`-on-`auto`-parent regression above by actually re-testing scroll behavior (not just re-reading the diff): forced overflow with a short viewport, confirmed `scrollHeight` (508px) now exceeds `clientHeight` (320px, matching the 80vh cap), and that `scrollTop` moves — where the buggy version had `clientHeight === scrollHeight` (i.e., nothing to scroll, cap silently doing nothing).
+- Hero redesign screenshotted in a headless browser to confirm the gradient, circuit texture, both gold borders, and serif divider actually render (not just that the classes exist) — this also caught the need to avoid Tailwind's version-specific gradient utility names.
+- Video hero verified in a real browser: confirmed the `<video>` element is actually playing (`paused: false`, `currentTime` advancing, `readyState: 4`), not just present in the DOM, and two screenshots taken 1.5s apart show different video frames. Confirmed the navbar's background renders and text stays legible in both light-navy and dark-navy regions of the moving video underneath.
+- Navbar revert + footer background swap screenshotted: confirmed the navbar is back to white/blue, and the footer shows the gradient/circuit texture with the gold top border, with the icons and copyright text still clearly legible.
+- Pagination restyle screenshotted on page 1 and after clicking page 2: confirmed the active-page box/underline correctly follows the click (not stuck on page 1), and the projects grid actually changes (`Movie App` → `Web Presence`).
+- Dodgerblue recolor verified with computed styles in a real browser: active button's border color resolved to `rgb(30, 144, 255)` (exact dodgerblue RGB), background to the same blue used elsewhere on the site.
+
+## 15. Swapped hero/navbar backgrounds; hero now uses a video wallpaper
+
+**Files:** `src/Components/Navbar.jsx`, `src/Components/Hero.jsx`
+
+**Change (requested):** Move the `.hero-bg` navy/circuit-texture background (from #14) onto the navbar, and replace the hero's background with the video at `public/video/livewallpaper.mp4`.
+
+**Fix:**
+- `Navbar.jsx` restructured to match `Hero.jsx`'s pattern: an outer full-width element carries `hero-bg border-y border-amber-700/50`, with `container mx-auto` moved to the inner `<nav>` for content centering (previously the outer wrapper itself was the constrained container, which wouldn't have let a full-bleed background span the viewport). Text color switched from `text-blue-900` to `text-white` since it now sits on a dark background instead of white.
+- `Hero.jsx`: replaced `hero-bg` with an absolutely-positioned `<video>` (`autoPlay loop muted playsInline`, `object-cover`) plus a `bg-blue-950/60` scrim on top for text contrast, and the content (`<main>`) promoted to `relative z-10` so it's unambiguously stacked above both the video and the scrim.
+
+**Note:** the video file is 28MB (3840×2160 source). That's heavy for a hero background on first load — worth revisiting later (e.g. a compressed/lower-res encode, or `preload="none"` with a poster image) if load time on the live site becomes a concern. Not addressed here since it's the asset you provided and wasn't part of the ask.
+
+## 16. Navbar reverted, background moved to footer instead
+
+**Files:** `src/Components/Navbar.jsx`, `src/Components/Footer.jsx`
+
+**Change (requested):** Undo #15's navbar styling — Navbar goes back to its original white background / `text-blue-900`, and the `hero-bg` navy/circuit-texture treatment moves to the footer instead.
+
+**Fix:**
+- `Navbar.jsx` reverted to its pre-#15 structure: outer `container mx-auto my-5` div, no background class, `text-blue-900` on the brand text.
+- `Footer.jsx`: added `hero-bg` and `border-t border-amber-700/50` to the existing `<footer>` element (kept its own `text-white`, already correct for a dark background — the social icons use `fill="currentColor"` so they stayed white automatically). Only a top border, since the footer is the last element on the page.
+
+## 17. Pagination restyled to match a numbered-tab mockup
+
+**File:** `src/Components/Pagination.jsx`
+
+**Change (requested, from a design mockup showing 5 pagination styles):** Replaced the boxed-blue-button pagination (every page number sat in a solid `bg-blue-900`/`bg-blue-500` block) with the mockup's "Numerical Active" style: plain numbers, and only the active page gets a light gray box with an underline accent.
+
+**Fix:** Inactive pages are now plain `text-blue-900` numbers (hover: `text-teal-600`); the active page gets `bg-gray-200`, bold text, and a `border-b-2 border-teal-400` underline. Reused `teal-400` for the underline to match the accent already introduced by the hero's gradient divider (#14), rather than inventing a new accent color. Also dropped the unused `import React from 'react'` (not needed under Vite's JSX runtime) and switched the `key` from array `index` to the `page` number itself, since pages are a stable, unique set.
+
+### 17a. Recolored to dodgerblue + the site's original blue
+
+**File:** `src/Components/Pagination.jsx`
+
+**Change (requested):** Swap the teal/gray accent from #17 for `dodgerblue` and the site's established `blue-900`, instead of introducing a new accent color.
+
+**Fix:** Active page is now `bg-blue-900 text-white` (the same blue used for the navbar's original brand text, buttons, and footer) with a `border-b-2 border-[dodgerblue]` underline; inactive pages hover to `text-[dodgerblue]` instead of teal. `dodgerblue` is passed as a Tailwind arbitrary value (`[dodgerblue]`) since it's not a named Tailwind color — verified in a real browser that it computes to `rgb(30, 144, 255)`, dodgerblue's actual RGB value, and that this also matches the `dodgerblue` already used for link hovers elsewhere on the site (`.links-hover` in `App.css`).
+
+---
 
 ## Not changed
 

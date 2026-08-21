@@ -23,7 +23,7 @@ const socials = [
 
 const Footer = () => {
   return (
-    <footer className=" flex flex-col items-center gap-5 bg-blue-950 text-white py-10 text-xl">
+    <footer className="hero-bg border-t border-amber-700/50 flex flex-col items-center gap-5 text-white py-10 text-xl">
       <ul className="links-hover flex gap-6 justify-between items-center px-5">
         {socials.map(({ name, href, path }) => (
           <li key={name}>
