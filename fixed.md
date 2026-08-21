@@ -178,6 +178,8 @@ Documentation of issues found during a project review and the fixes applied. Ver
 - Navbar revert + footer background swap screenshotted: confirmed the navbar is back to white/blue, and the footer shows the gradient/circuit texture with the gold top border, with the icons and copyright text still clearly legible.
 - Pagination restyle screenshotted on page 1 and after clicking page 2: confirmed the active-page box/underline correctly follows the click (not stuck on page 1), and the projects grid actually changes (`Movie App` → `Web Presence`).
 - Dodgerblue recolor verified with computed styles in a real browser: active button's border color resolved to `rgb(30, 144, 255)` (exact dodgerblue RGB), background to the same blue used elsewhere on the site.
+- Video optimization verified end-to-end: `ffprobe` confirmed the re-encoded specs (1920×1080, 30fps, ~776 kbps, 1.46MB) and the `moov`-before-`mdat` byte ordering that faststart requires. On an unthrottled connection, a real browser started playing the video ~4.5ms after the `<video>` element mounted. Under an artificial "Fast 3G" throttle (1.6 Mbps, 150ms latency), the poster + dark scrim kept the hero fully legible with no blank/broken flash while the video buffered in behind it.
+- Autoplay fix (#18a) verified under both Chrome's default autoplay policy and its strictest one (`--autoplay-policy=user-gesture-required`): in both cases `video.paused` was `false` and `currentTime` measurably advanced (e.g. 0.99s → 1.50s over a 500ms window) — not just "the play() call didn't throw."
 
 ## 15. Swapped hero/navbar backgrounds; hero now uses a video wallpaper
 
@@ -216,6 +218,31 @@ Documentation of issues found during a project review and the fixes applied. Ver
 **Change (requested):** Swap the teal/gray accent from #17 for `dodgerblue` and the site's established `blue-900`, instead of introducing a new accent color.
 
 **Fix:** Active page is now `bg-blue-900 text-white` (the same blue used for the navbar's original brand text, buttons, and footer) with a `border-b-2 border-[dodgerblue]` underline; inactive pages hover to `text-[dodgerblue]` instead of teal. `dodgerblue` is passed as a Tailwind arbitrary value (`[dodgerblue]`) since it's not a named Tailwind color — verified in a real browser that it computes to `rgb(30, 144, 255)`, dodgerblue's actual RGB value, and that this also matches the `dodgerblue` already used for link hovers elsewhere on the site (`.links-hover` in `App.css`).
+
+## 18. Hero video: slow to load, didn't play immediately
+
+**Files:** `public/video/livewallpaper.mp4`, `public/video/livewallpaper-poster.jpg` (new), `src/Components/Hero.jsx`
+
+**Problem:** `livewallpaper.mp4` was a raw 4K export — 3840×2160, 60fps, ~15 Mbps bitrate, 28MB for a 15-second clip — with no web-streaming optimization (the `moov` atom, which a browser needs to read before it can start playing, sat at the *end* of the file, after all the video data). So even once "loaded," the browser couldn't begin playback until a large portion of the file had downloaded. You asked whether converting it to WebP (Netlify has an image-transform CDN, `/.netlify/images`) would help.
+
+**Why not WebP:** Netlify's Image CDN transforms images only — there's no equivalent video-transcoding service on Netlify, so there's nothing to point a video at there. Animated WebP was also the wrong format for this content: for a multi-second, full-width, high-motion clip, real video codecs (H.264/VP9/AV1) compress far more efficiently than WebP's frame-sequence approach. Converting would likely have landed bigger or lower quality at the same size — a format swap doesn't fix an encoding problem.
+
+**Fix:** Installed `ffmpeg` and re-encoded the source in place:
+- Downscaled 3840×2160 → 1920×1080 (the video is cropped into a much shorter banner anyway, so 4K resolution was entirely wasted).
+- Dropped 60fps → 30fps (imperceptible for a slow ambient loop, halves the frame count).
+- Re-encoded with `libx264 -crf 27 -preset slow`, no audio track (there wasn't one to begin with, but confirmed via `ffprobe`).
+- Added `-movflags +faststart`, which moves the `moov` atom to the front of the file — verified via `ffprobe -v trace` that `moov` now sits at byte offset 40, before `mdat`, so a browser can start playback after fetching just the small header instead of the whole file.
+- Result: **28MB → 1.46MB**, a ~95% reduction.
+- Generated a poster frame (`livewallpaper-poster.jpg`, extracted with `ffmpeg -vframes 1`) and added `poster="/video/livewallpaper-poster.jpg"` plus `preload="auto"` to the `<video>` element in `Hero.jsx`, so something displays instantly on first paint instead of a blank/black box while the video buffers.
+- Moved the untouched raw 4K original out of `public/` (Vite copies everything under `public/` into the build output regardless of whether it's referenced, so leaving it there would have shipped the original 28MB file to production a second time, unused). It's preserved outside the repo in case you want the master file back.
+
+### 18a. Video wasn't actually autoplaying — stuck on the poster
+
+**File:** `src/Components/Hero.jsx`
+
+**Problem:** After #18, the poster image displayed but the video itself never started playing (reported: "i can see a livewallpaper poster"). This is a known React + `<video>` gotcha: React applies the `muted` prop as a JS property (`videoEl.muted = true`) rather than as an HTML attribute, and depending on exactly when that property gets applied relative to the browser's internal autoplay attempt (triggered by the `autoPlay` attribute), the browser can evaluate the muted-autoplay check before the property is actually set — sees an "unmuted" video, silently blocks `play()`, and autoplay doesn't retry on its own. The poster then just sits there forever since nothing ever advances past it.
+
+**Fix:** Added a `ref` on the `<video>` and an effect that explicitly forces `video.muted = true` and calls `video.play()` on mount (`.catch(() => {})` since a rejected play promise here is expected/harmless — e.g. if a browser still blocks it, it just stays on the poster rather than throwing).
 
 ---
 
