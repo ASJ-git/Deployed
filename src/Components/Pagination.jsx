@@ -21,6 +21,7 @@ const Pagination = ({
                 .getElementById('showcase')
                 .scrollIntoView({ behavior: 'smooth' });
             }}
+            aria-current={page === currentPage ? 'page' : undefined}
             className={`px-1.5 cursor-pointer m-2 text-white text-2xl ${
               page === currentPage ? 'bg-blue-500 font-bold' : 'bg-blue-900'
             }`}

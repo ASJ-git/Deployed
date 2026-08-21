@@ -1,10 +1,13 @@
 import WebsiteCard from './WebsiteCard';
-import websites from '../Utitlities/Websites.js';
+import websites from '../Utilities/Websites.js';
 import { useState } from 'react';
 import Pagination from './Pagination.jsx';
+
+const postsPerPage = 6;
+
+
 const Showcase = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(6);
   const lastPage = currentPage * postsPerPage;
   const firstPage = lastPage - postsPerPage;
   const currentPost = websites.slice(firstPage, lastPage);
@@ -17,7 +20,7 @@ const Showcase = () => {
       >
         {currentPost.map((website) => (
           <WebsiteCard
-            key={crypto.randomUUID()}
+            key={website.title}
             src={website.src}
             title={website.title}
             description={website.description}
