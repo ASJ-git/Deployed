@@ -1,13 +1,10 @@
 import WebsiteCard from './WebsiteCard';
 import websites from '../Utilities/Websites.js';
-import { useState } from 'react';
 import Pagination from './Pagination.jsx';
 
 const postsPerPage = 6;
 
-
-const Showcase = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Showcase = ({ currentPage, setCurrentPage }) => {
   const lastPage = currentPage * postsPerPage;
   const firstPage = lastPage - postsPerPage;
   const currentPost = websites.slice(firstPage, lastPage);

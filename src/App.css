@@ -15,3 +15,11 @@ body {
     transition: opacity ease 0.5s;
   }
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

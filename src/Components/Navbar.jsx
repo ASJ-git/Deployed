@@ -1,10 +1,19 @@
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ onLogoClick }) => {
+  const handleLogoClick = () => {
+    onLogoClick?.();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="container mx-auto my-5 ">
       <nav className="flex flex-col justify-between items-center gap-2 px-5 sm:flex-row">
-        <Link to="/" className="flex justify-center items-center cursor-pointer">
+        <Link
+          to="/"
+          onClick={handleLogoClick}
+          className="flex justify-center items-center cursor-pointer"
+        >
           <img
             src="/nav-brand.jpg"
             alt="logo"

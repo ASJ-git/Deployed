@@ -110,6 +110,41 @@ Documentation of issues found during a project review and the fixes applied. Ver
 - Icons use `fill="currentColor"` so the existing `.links-hover > li a:hover { color: dodgerblue }` rule in `App.css` still drives the hover effect, unchanged.
 - Each link keeps an `aria-label` (and `title`) with the platform name, since the visible text that used to provide that is gone — needed for screen readers and hover tooltips.
 
+## 11. Logo/brand name didn't navigate anywhere, and didn't reset pagination
+
+**Files:** `src/Components/Navbar.jsx`, `src/Pages/Home.jsx`, `src/Components/Showcase.jsx`
+
+**Problem:** The navbar logo + "DEPLOYED / By ASJ" block had `cursor-pointer` styling but no actual link or click behavior — clicking it did nothing. A first pass wrapped it in a React Router `Link to="/"`, but since the app is a single route, clicking it while already on `/` doesn't remount `Showcase`, so if a visitor was on pagination page 2 or 3, the click wouldn't actually take them back to the first page of projects, and wouldn't scroll them back up.
+
+**Fix:**
+- Lifted `currentPage` state out of `Showcase` and into `Home`, passed down as `currentPage`/`setCurrentPage` props (`Showcase` is now a controlled component for pagination).
+- `Navbar` takes an `onLogoClick` prop; `Home` wires it to `setCurrentPage(1)`.
+- Clicking the logo/name now: navigates to `/` (via `Link`), resets pagination to page 1, and smooth-scrolls the window back to the top — verified in a real browser (paginated to page 2, confirmed a different first card, clicked the logo, confirmed the page-1 card returned and `window.scrollY` went back to `0`).
+
+## 12. Card preview modal scrollbar
+
+**Files:** `src/App.css`, `src/Components/CardPreview.jsx`
+
+**Change (requested):** The preview modal's `overflow-y-auto` container showed a visible scrollbar when content exceeded `max-h-[80vh]`. Requested: hide the scrollbar visually without disabling scrolling.
+
+**Fix:** Added a `.no-scrollbar` utility to `App.css` (`scrollbar-width: none` for Firefox, `-ms-overflow-style: none` for legacy Edge/IE, `::-webkit-scrollbar { display: none }` for Chromium/Safari) and applied it to the dialog container in `CardPreview.jsx`. `overflow-y: auto` is untouched — verified by forcing overflow (short viewport height) and programmatically setting `scrollTop`, which moved as expected even with the scrollbar hidden.
+
+## 13. Preview close button styling
+
+**File:** `src/Components/CardPreview.jsx`
+
+**Change (requested):** The X button sat flush inside the card's top-right corner, overlapping the image with no visual separation. Requested: make it float on the popup with a ring border.
+
+**Fix:** Restructured the modal so the scrollable card (`role="dialog"`, `overflow-y-auto`) sits inside a non-scrolling `relative` wrapper, and moved the close button to be a sibling of that scrollable card instead of a child positioned inside it. This matters because the button now uses negative offsets (`-top-3 -right-3`) to hang outside the card's corner — if it stayed inside the `overflow-y-auto` container, that overflow would either clip it or introduce an unwanted horizontal scrollbar (the CSS overflow spec forces the other axis to `auto` once one axis is set). Also added `ring-2 ring-white` and `shadow-lg` so it reads as a distinct floating element regardless of what's behind it (image or white card background).
+
+### 13a. Regression: this restructuring silently broke the scroll cap
+
+**File:** `src/Components/CardPreview.jsx`
+
+**Problem:** In the restructuring above, `max-h-[80vh]` moved to the *outer* (non-scrolling) wrapper, and the scrollable `role="dialog"` div was given `h-full` to fill it. That doesn't work: the outer wrapper has no explicit `height`, only `max-height`, so its height is `auto` — determined by its content. A percentage height (`h-full` = `height: 100%`) on a child of an `auto`-height parent resolves to `auto` too, per the CSS spec (percentage heights only resolve against a *definite* parent height). So the scrollable div's height silently became "however tall the content is," `max-h-[80vh]` on the outer box stopped constraining anything meaningful, and the card just grew past 80% of the viewport instead of capping and scrolling internally.
+
+**Fix:** Moved `max-h-[80vh]` directly onto the scrollable `role="dialog"` div (where `overflow-y-auto` actually lives) and dropped `h-full`/`max-h-[80vh]` from the outer wrapper — it now sizes itself from its (now properly capped) child, which also keeps the floating close button correctly pinned to the visible corner instead of the corner of an oversized, uncapped box.
+
 ---
 
 ## Verification
@@ -120,6 +155,9 @@ Documentation of issues found during a project review and the fixes applied. Ver
 - Netlify Image CDN endpoint (`/.netlify/images?...`) manually verified against the live production URL — all 19 project images return `200 image/webp`, individually and under concurrent load, ruling out a server-side cause for any previously reported "images not showing" issue.
 - Card preview modal driven end-to-end with a headless Playwright browser against the dev server: opened via card click, full untruncated description confirmed present, closed via the X button, backdrop click, and `Escape` — all three worked; "Visit Site" retained `target="_blank" rel="noopener noreferrer"` and didn't trigger the modal; zero console errors throughout.
 - Footer icons verified the same way: screenshotted in a headless browser (renders as four recognizable brand marks on the dark footer), and confirmed all four `href`/`target`/`rel` attributes are intact after the text→icon swap, with zero console errors.
+- Logo click and preview scrollbar behavior both driven end-to-end with Playwright: confirmed pagination actually resets and the page scrolls to top on logo click, and confirmed the preview dialog remains scrollable (`scrollTop` moves) with the scrollbar hidden.
+- Close button restyle: screenshotted, confirmed it visually floats outside the card's top-right corner with the white ring visible, and confirmed clicking it still closes the modal.
+- Caught the `h-full`-on-`auto`-parent regression above by actually re-testing scroll behavior (not just re-reading the diff): forced overflow with a short viewport, confirmed `scrollHeight` (508px) now exceeds `clientHeight` (320px, matching the 80vh cap), and that `scrollTop` moves — where the buggy version had `clientHeight === scrollHeight` (i.e., nothing to scroll, cap silently doing nothing).
 
 ## Not changed
 
