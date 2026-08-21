@@ -4,7 +4,7 @@ const WebsiteCard = ({ src, title, description, websiteLink }) => {
     <div className="w-full rounded-b-xl border-1 border-gray-400">
       <div className="h-80 overflow-hidden">
         <img
-          src={src}
+          src={`/.netlify/images?url=${src}&w=760&fm=webp&q=75`}
           alt={title}
           className="w-full h-full  object-cover object-top"
         />
