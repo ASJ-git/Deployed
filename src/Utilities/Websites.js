@@ -129,5 +129,12 @@ const websites = [
 `,
     websiteLink: 'http://mygoogleweb.netlify.app',
   },
+  {
+    src: '/hover.png',
+    title: 'Hover Board',
+    description: `       A grid of 500 tiny squares that light up with a random color as your cursor (or finger) glides across them, then fade slowly back to black — leaving a brief color trail.
+`,
+    websiteLink: 'http://hoverlight.netlify.app',
+  },
 ];
 export default websites;
