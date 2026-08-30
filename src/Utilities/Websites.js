@@ -92,7 +92,7 @@ const websites = [
     src: '/marysburger.png',
     title: 'Marys Burger',
     description:
-      'A responsive restaurant website with a modern UI — built to showcase front-end design skills in a real-world food business context.',
+      'A responsive restaurant website with a modern UI, built to showcase front-end design skills in a real-world food business context.',
     websiteLink: 'http://marysburger.netlify.app',
   },
   {
@@ -130,9 +130,16 @@ const websites = [
     websiteLink: 'http://mygoogleweb.netlify.app',
   },
   {
+    src: '/msclone.png',
+    title: 'Microsoft Website Clone',
+    description: ` A static clone of the pre-2021 Microsoft.com homepage, built with plain HTML, CSS, and JavaScript, no build tools or frameworks.
+`,
+    websiteLink: 'http://mswebclone.netlify.app',
+  },
+  {
     src: '/hover.png',
     title: 'Hover Board',
-    description: `       A grid of 500 tiny squares that light up with a random color as your cursor (or finger) glides across them, then fade slowly back to black — leaving a brief color trail.
+    description: `       A grid of 500 tiny squares that light up with a random color as your cursor (or finger) glides across them, then fade slowly back to black, leaving a brief color trail.
 `,
     websiteLink: 'http://hoverlight.netlify.app',
   },
