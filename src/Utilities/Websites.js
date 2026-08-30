@@ -3,14 +3,14 @@ const websites = [
     src: '/movieapp.png',
     title: 'Movie App',
     description:
-      'This movie app lets users browse, search, and discover films with detailed informations.',
+      'This movie app lets users browse, search and discover films with detailed informations.',
     websiteLink: 'http://asjmovieapp.netlify.app',
   },
   {
     src: '/weatherweb.png',
     title: 'Weather App',
     description:
-      'A sleek weather app that delivers real-time forecasts with clear visuals and accurate data. Stay updated on temperature, conditions, and alerts wherever you are.',
+      'A sleek weather app that delivers real-time forecasts with clear visuals and accurate data. Stay updated on temperature, conditions and alerts wherever you are.',
     websiteLink: 'http://asj-weather-web.netlify.app',
   },
   {
@@ -99,7 +99,7 @@ const websites = [
     src: '/vanillacoffee.png',
     title: "Uncle's Coffee",
     description:
-      'A responsive artisan coffee shop website showcasing signature blends, product pricing, and a clean modern layout.',
+      'A responsive artisan coffee shop website showcasing signature blends, product pricing and a clean modern layout.',
     websiteLink: 'http://vanillacoffee.netlify.app',
   },
   {
@@ -113,7 +113,7 @@ const websites = [
     src: '/phonoweb.png',
     title: 'Phono Web',
     description:
-      'A responsive headphone website built with vanilla JavaScript, HTML, and CSS.',
+      'A responsive headphone website built with vanilla JavaScript, HTML and CSS.',
     websiteLink: 'http://phonoweb.netlify.app',
   },
   {
@@ -125,14 +125,14 @@ const websites = [
   {
     src: '/googleclone.png',
     title: 'Google Clone',
-    description: `      A clean, minimal search interface replicating Google's homepage with a centered logo, input bar, and quick-access buttons.
+    description: `      A clean, minimal search interface replicating Google's homepage with a centered logo, input bar and quick-access buttons.
 `,
     websiteLink: 'http://mygoogleweb.netlify.app',
   },
   {
     src: '/msclone.png',
     title: 'Microsoft Website Clone',
-    description: ` A static clone of the pre-2021 Microsoft.com homepage, built with plain HTML, CSS, and JavaScript, no build tools or frameworks.
+    description: ` A static clone of the pre-2021 Microsoft.com homepage, built with plain HTML, CSS and JavaScript, no build tools or frameworks.
 `,
     websiteLink: 'http://mswebclone.netlify.app',
   },
