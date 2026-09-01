@@ -1,5 +1,11 @@
 const websites = [
   {
+    src: '/quotemine.png',
+    title: 'QuoteMine',
+    description: `A quote generator with category filtering, favorites, search, sharing, text-to-speech, and downloadable quote images. Offline-capable and personalized with daily picks and history.`,
+    websiteLink: 'http://asjquotemine.netlify.app',
+  },
+  {
     src: '/movieapp.png',
     title: 'Movie App',
     description:
@@ -21,25 +27,46 @@ const websites = [
     websiteLink: 'https://asjspeakit.netlify.app',
   },
   {
-    src: '/mindMatters.png',
-    title: 'Mind matters',
-    description:
-      ' A student-led Mental Health Awareness Initiative, conceptualized and driven by Mastercard Foundation Scholars at KNUST.',
-    websiteLink: 'https://ilfmindmatters.netlify.app',
-  },
-  {
-    src: '/renanceproject.png',
-    title: 'Renance Project',
-    description: `      A trusted co-pilot for every stage of your employees' financial journey, offering clear insights and guidance to strengthen their overall financial well-being.
+    src: '/hover.png',
+    title: 'Hover Board',
+    description: `       A grid of 500 tiny squares that light up with a random color as your cursor (or finger) glides across them, then fade slowly back to black, leaving a brief color trail.
 `,
-    websiteLink: 'http://renanceproject.netlify.app',
+    websiteLink: 'http://hoverlight.netlify.app',
   },
   {
-    src: '/cyberdev.png',
-    title: 'Cyber Dev',
+    src: '/todo.png',
+    title: 'To Do App',
+    description: `   A simple, dependency-free to-do list app built with vanilla HTML, CSS and JavaScript.
+`,
+    websiteLink: 'http://asjtodos.netlify.app',
+  },
+  {
+    src: '/guessgame.png',
+    title: 'Guess Game',
     description:
-      'A craft digital experiences that blend creativity with technology, specializing in modern web development and cybersecurity systems.',
-    websiteLink: 'http://asjcyberdev.netlify.app',
+      'A simple game where the computer secretly chooses a number within a given range, and player tries to guess it.',
+    websiteLink: 'http://guessnogame01.netlify.app',
+  },
+  {
+    src: '/googleclone.png',
+    title: 'Google Clone',
+    description: `      A clean, minimal search interface replicating Google's homepage with a centered logo, input bar and quick-access buttons.
+`,
+    websiteLink: 'http://mygoogleweb.netlify.app',
+  },
+  {
+    src: '/msclone.png',
+    title: 'Microsoft Website Clone',
+    description: ` A static clone of the pre-2021 Microsoft.com homepage, built with plain HTML, CSS and JavaScript, no build tools or frameworks.
+`,
+    websiteLink: 'http://mswebclone.netlify.app',
+  },
+  {
+    src: '/phonoweb.png',
+    title: 'Phono Web',
+    description:
+      'A responsive headphone website built with vanilla JavaScript, HTML and CSS.',
+    websiteLink: 'http://phonoweb.netlify.app',
   },
   {
     src: '/webpresence.png',
@@ -47,32 +74,6 @@ const websites = [
     description:
       'A modern website showcasing a presence app that helps users track availability and activity in real time. Designed with a clean interface for seamless navigation and instant insights.',
     websiteLink: 'http://webprence.netlify.app',
-  },
-  {
-    src: '/alpha.png',
-    title: 'Saas Alpha',
-    description: 'SaaS Landing Page Template',
-    websiteLink: 'http://saas-alpha.netlify.app',
-  },
-  {
-    src: '/beta.png',
-    title: 'Saas Beta',
-    description: 'SaaS Landing Page Template',
-    websiteLink: 'http://saas-beta.netlify.app',
-  },
-  {
-    src: '/Digital Porfolio.png',
-    title: 'Digital Resume',
-    description:
-      'A results-driven professional with strong skills in modern web development and problem-solving.',
-    websiteLink: 'http://asjresume.netlify.app',
-  },
-  {
-    src: '/ephya.png',
-    title: 'Ehya',
-    description:
-      'Ehya is the instagram analytics platform teams use to stay focused on the goals, track engagement for report your business.',
-    websiteLink: 'http://ehya-expliot-site.netlify.app',
   },
   {
     src: '/agency.png',
@@ -103,18 +104,39 @@ const websites = [
     websiteLink: 'http://vanillacoffee.netlify.app',
   },
   {
-    src: '/guessgame.png',
-    title: 'Guess Game',
+    src: '/mindMatters.png',
+    title: 'Mind matters',
     description:
-      'A simple game where the computer secretly chooses a number within a given range, and player tries to guess it.',
-    websiteLink: 'http://guessnogame01.netlify.app',
+      'A student-led Mental Health Awareness Initiative by Mastercard Foundation Scholars at KNUST, now with an email subscription section for updates.',
+    websiteLink: 'https://ilfmindmatters.netlify.app',
   },
   {
-    src: '/phonoweb.png',
-    title: 'Phono Web',
+    src: '/ephya.png',
+    title: 'Ehya',
     description:
-      'A responsive headphone website built with vanilla JavaScript, HTML and CSS.',
-    websiteLink: 'http://phonoweb.netlify.app',
+      'Ehya is the instagram analytics platform teams use to stay focused on the goals, track engagement for report your business.',
+    websiteLink: 'http://ehya-expliot-site.netlify.app',
+  },
+  {
+    src: '/Digital Porfolio.png',
+    title: 'Digital Resume',
+    description:
+      'A results-driven professional with strong skills in modern web development and problem-solving.',
+    websiteLink: 'http://asjresume.netlify.app',
+  },
+  {
+    src: '/cyberdev.png',
+    title: 'Cyber Dev',
+    description:
+      'A craft digital experiences that blend creativity with technology, specializing in modern web development and cybersecurity systems.',
+    websiteLink: 'http://asjcyberdev.netlify.app',
+  },
+  {
+    src: '/renanceproject.png',
+    title: 'Renance Project',
+    description: `      A trusted co-pilot for every stage of your employees' financial journey, offering clear insights and guidance to strengthen their overall financial well-being.
+`,
+    websiteLink: 'http://renanceproject.netlify.app',
   },
   {
     src: '/apptheme.png',
@@ -123,32 +145,16 @@ const websites = [
     websiteLink: 'http://newapptheme.netlify.app',
   },
   {
-    src: '/todo.png',
-    title: 'To Do App',
-    description: `   A simple, dependency-free to-do list app built with vanilla HTML, CSS and JavaScript.
-`,
-    websiteLink: 'http://asjtodos.netlify.app',
+    src: '/alpha.png',
+    title: 'Saas Alpha',
+    description: 'SaaS Landing Page Template',
+    websiteLink: 'http://saas-alpha.netlify.app',
   },
   {
-    src: '/googleclone.png',
-    title: 'Google Clone',
-    description: `      A clean, minimal search interface replicating Google's homepage with a centered logo, input bar and quick-access buttons.
-`,
-    websiteLink: 'http://mygoogleweb.netlify.app',
-  },
-  {
-    src: '/msclone.png',
-    title: 'Microsoft Website Clone',
-    description: ` A static clone of the pre-2021 Microsoft.com homepage, built with plain HTML, CSS and JavaScript, no build tools or frameworks.
-`,
-    websiteLink: 'http://mswebclone.netlify.app',
-  },
-  {
-    src: '/hover.png',
-    title: 'Hover Board',
-    description: `       A grid of 500 tiny squares that light up with a random color as your cursor (or finger) glides across them, then fade slowly back to black, leaving a brief color trail.
-`,
-    websiteLink: 'http://hoverlight.netlify.app',
+    src: '/beta.png',
+    title: 'Saas Beta',
+    description: 'SaaS Landing Page Template',
+    websiteLink: 'http://saas-beta.netlify.app',
   },
 ];
 export default websites;
