@@ -20,6 +20,13 @@ const websites = [
     websiteLink: 'http://asj-weather-web.netlify.app',
   },
   {
+    src: '/dailyBlog.png',
+    title: 'The Daily Blog',
+    description:
+      'A daily blog that pulls fresh developer stories straight from Dev.to live, automatic, zero backend, always up to date.',
+    websiteLink: 'http://asjdailyblog.netlify.app',
+  },
+  {
     src: '/speakIt.png',
     title: 'SpeakIt',
     description:
@@ -156,5 +163,6 @@ const websites = [
     description: 'SaaS Landing Page Template',
     websiteLink: 'http://saas-beta.netlify.app',
   },
+  
 ];
 export default websites;
