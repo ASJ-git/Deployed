@@ -6,6 +6,13 @@ const websites = [
     websiteLink: 'http://asjquotemine.netlify.app',
   },
   {
+    src: '/resume.png',
+    title: 'Digital Resume',
+    description:
+      'A results-driven professional with strong skills in modern web development and problem-solving.',
+    websiteLink: 'http://asjresume.netlify.app',
+  },
+  {
     src: '/movieapp.png',
     title: 'Movie App',
     description:
@@ -123,13 +130,6 @@ const websites = [
     description:
       'Ehya is the instagram analytics platform teams use to stay focused on the goals, track engagement for report your business.',
     websiteLink: 'http://ehya-expliot-site.netlify.app',
-  },
-  {
-    src: '/Digital Porfolio.png',
-    title: 'Digital Resume',
-    description:
-      'A results-driven professional with strong skills in modern web development and problem-solving.',
-    websiteLink: 'http://asjresume.netlify.app',
   },
   {
     src: '/cyberdev.png',
